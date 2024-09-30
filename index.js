@@ -1,20 +1,24 @@
+const url = require('url');
 const http = require('http');
+const fileReader = require('./features/file-reader');
+const colorNameToHex = require('./features/color-translator');
 
 const port = 3000;
 const hostname = 'localhost';
+const jsonFilePath = './data/colors.json';
 const allowedOrigin = 'http://localhost:4200';
-const jsonFilePath = './colors.json';
-const fileReader = require('./file-reader');
-const colorNameToHex = require('./color-translator');
-const colorList = fileReader(jsonFilePath);
 
 const server = http.createServer((req, res) => {
+    const colorList = fileReader(jsonFilePath);
+    const parsedUrl = url.parse(req.url, true);
+    const query = parsedUrl.query;
 
     setHeaders(res);
     
-    if (req.method === 'GET' && req.url === '/color-translate') {
-        const hex = colorNameToHex('red', colorList);
-        
+    if (req.method === 'GET' && parsedUrl.pathname === '/color-translate') {
+        const colorName = query.name || '';
+        const hex = colorNameToHex(colorName, colorList);
+
         res.statusCode = 200;
         res.end(JSON.stringify({ hex }));
     } else {
