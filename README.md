@@ -10,7 +10,7 @@ The Color Translator API allows users to convert color names to their hexadecima
 
 - Translate color names to hex codes.
 
-## Installation
+## Installation and Usage
 
 - First, make sure that you have Node.js installed.
 - Clone the repository and install the necessary dependencies.
@@ -19,3 +19,6 @@ git clone https://github.com/jesse-ph/color-translator-api.git
 cd color-translator-api
 npm install
 ```
+
+## Running unit tests
+Run `npm test` to execute the unit tests using `Jest`.

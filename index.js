@@ -4,7 +4,6 @@ const fileReader = require('./features/file-reader');
 const colorNameToHex = require('./features/color-translator');
 
 const port = 3000;
-const hostname = 'localhost';
 const jsonFilePath = './data/colors.json';
 const allowedOrigin = 'http://localhost:4200';
 
@@ -33,6 +32,6 @@ const setHeaders = (response) => {
     response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
 }
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+server.listen(port, () => {
+    console.log(`Server running at Port ${port}`);
 });
